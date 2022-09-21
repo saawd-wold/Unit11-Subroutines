@@ -84,6 +84,8 @@ with the exception that $0^x$ is $0$ for all $x$ except when  $x = 0$. Remember 
 
 **In `maths/exponents.py`, write a function `exponentiate(x, y)` that computes $x^y$ for any $x \geq 0$ and any $y$.**
 
+*`exponentiate` should check whether the input `y` is an integer: This allows us to use the standard `**` operator in Python rather than the approximate function we have written ourselves!*
+
 We can also use this to write root functions such as the square root and $\sqrt[n]{x}$ for any $n$. Recall that 
 $$\sqrt[n]{x} = x^{1/n}$$ 
 so that root functions become easy to compute with what we have so far. 

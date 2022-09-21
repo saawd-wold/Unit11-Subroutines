@@ -11,16 +11,16 @@ def test_exp0():
     assert exp(0) == 1
 
 def test_expN():
-    for n in range(-10, 0):
-        assert exp(n) == pytest.approx(1/(EULER**n), 1e-7)
-    for n in range(0, 10):
+    for n in range(1, 10):
+        assert exp(-n) == pytest.approx(1/(EULER**n), 1e-7)
+    for n in range(1, 10):
         assert exp(n) == pytest.approx((EULER**n), 1e-7)
 
 def test_expFloat():
     p = 1.5
-    assert exp(p) == pytest.approx((EULER ** 3) / (EULER ** 2), 1e-4)
+    assert exp(p) == pytest.approx(np.power(EULER, 3/2), 1e-4)
     p = 1/8 + 1/16
-    assert exp(p) == pytest.approx((EULER ** 3) / (EULER ** 16), 1e-4)
+    assert exp(p) == pytest.approx(np.power(EULER, 3/16), 1e-4)
 
 def test_expNaN():
     assert isnan(exp(NaN))
@@ -36,7 +36,7 @@ def test_expobase1():
 def test_expo_arbitrarynumbers():
     A = np.random.gamma(1.618, 28.024, 50) + 1e-4
     B = np.random.normal(0, 15, 50)
-    pows = np.float_power(a, b)
+    pows = np.float_power(A, B)
     for a, b, p in zip(A, B, pows):
         assert exponentiate(a, b) == pytest.approx(p, 1e-5)
 
@@ -55,19 +55,19 @@ def test_sqrt_neg():
     assert isnan(sqrt(-1))
 
 def test_root_n():
-    bases = np.arange(2, 12)
-    powers = np.arange(2, 12)
-    vs = np.power(bases, powers)
+    bases = np.arange(2, 12, dtype=int)
+    powers = np.arange(2, 12, dtype=int)
+    vs = np.power(bases, powers, dtype=int)
     for b, p, v in zip(bases, powers, vs):
-        assert root(v, p) == pytest.approx(b, 1e-8)
+        assert root(v, int(p)) == pytest.approx(b, 1e-8)
 
 def test_root_n_negative_success():
-    bases = np.arange(-2, -12, -1)
-    powers = np.arange(2, 12) * 2 + 1
-    vs = np.power(bases, powers)
+    bases = np.arange(-2, -6, -1, dtype=int)
+    powers = np.arange(2, 6, dtype=int) * 2 + 1
+    vs = np.power(bases, powers, dtype=int)
     for b, p, v in zip(bases, powers, vs):
-        assert root(v, p) == pytest.approx(b, 1e-8)
+        assert root(v, int(p)) == pytest.approx(b, 1e-8)
 
 def test_root_n_negative_failure(capsys):
     result = root(-3, 1.23)
-    assert capsys.readouterr().out == "Use exponentiate to compute non-integer roots, n must be integer type!"
+    assert capsys.readouterr().out == "Use exponentiate to compute non-integer roots, n must be integer type!\n"
