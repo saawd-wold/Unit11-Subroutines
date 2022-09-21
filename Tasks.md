@@ -13,7 +13,7 @@ The first function among these is the factorial function. It works on *integers*
 
 **In the file `maths/util.py`, write a function `factorial(n)` which returns the value $n!$.**
 
-*The file `util.py` contains a value `NaN` which represents undefined values ("N.a.N." == "Not a Number"). `factorial` should return this value when given a negative number.*
+*The file `util.py` contains a value `NaN` which represents undefined values ("N.a.N." == "Not a Number"). `factorial` should return this value when given a negative number or a non-integer value.*
 
 
 ### Exponents 1
