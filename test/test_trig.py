@@ -15,7 +15,7 @@ def test_sinPi():
 
 def test_sinNPi():
     for n in range(2, 30, 3):
-        assert sin(n*PI) == 0.0, f"sin({n}*PI) is incorrect"
+        assert sin(n*PI) == pytest.approx(0.0, 1e-10), f"sin({n}*PI) is incorrect"
 
 def test_sinPIoverTwo():
     assert sin(PI/2) == pytest.approx(1.0, 1e-5)
@@ -25,8 +25,8 @@ def test_sinPeriodicity():
         r = np.random.random() * 2 * PI - PI
         s = sin(r)
         for n in range(1, 11):
-            assert sin(r + n * 2 * PI) == s
-            assert sin(r - n * 2 * PI) == s
+            assert sin(r + n * 2 * PI) == pytest.approx(s, 1e-10)
+            assert sin(r - n * 2 * PI) == pytest.approx(s, 1e-10)
 
 def test_sinPiOver6():
     assert sin(PI/6) == pytest.approx(0.5, 1e-5)
@@ -39,29 +39,29 @@ def test_cosZero():
     assert cos(0) == pytest.approx(1.0, 1e-8)
 
 def test_cosPi():
-    assert sin(PI) == pytest.approx(-1.0, 1e-8)
+    assert cos(PI) == pytest.approx(-1.0, 1e-8)
 
-def test_sinNPi():
+def test_cosNPi():
     for n in range(2, 30, 3):
-        assert sin(n*PI) == pytest.approx((-1.0)**n, 1e-8), f"cos({n}*PI) is incorrect!"
+        assert cos(n*PI) == pytest.approx((-1.0)**n, 1e-8), f"cos({n}*PI) is incorrect!"
 
 def test_cosPIoverTwo():
-    assert sin(PI/2) == pytest.approx(0.0, 1e-5)
+    assert cos(PI/2) == pytest.approx(0.0, 1e-5)
 
 def test_cosPeriodicity():
     for _ in range(10):
         r = np.random.random() * 2 * PI - PI
         c = cos(r)
         for n in range(1, 11):
-            assert cos(r + n * 2 * PI) == c
-            assert cos(r - n * 2 * PI) == c
+            assert cos(r + n * 2 * PI) == pytest.approx(c, 1e-10)
+            assert cos(r - n * 2 * PI) == pytest.approx(c, 1e-10)
 
 def test_cosPiOver6():
     assert cos(PI/6) == pytest.approx(np.sqrt(3)/2, 1e-5)
 def test_cosPiOver4():
-    assert sin(PI/4) == pytest.approx(np.sqrt(2)/2, 1e-5) 
+    assert cos(PI/4) == pytest.approx(np.sqrt(2)/2, 1e-5) 
 def test_cosPiOver3():
-    assert sin(PI/3) == pytest.approx(1/2, 1e-5) 
+    assert cos(PI/3) == pytest.approx(1/2, 1e-5) 
 
 
 def test_tanZero():
@@ -85,8 +85,8 @@ def test_tanPeriodicity():
             continue
         t = tan(r)
         for n in range(1, 11):
-            assert tan(r + n * 2 * PI) == t
-            assert tan(r - n * 2 * PI) == t
+            assert tan(r + n * 2 * PI) == pytest.approx(t, 1e-10)
+            assert tan(r - n * 2 * PI) == pytest.approx(t, 1e-10)
 
 def test_tanPiOver6():
     assert tan(PI/6) == pytest.approx(1/np.sqrt(3), 1e-5)

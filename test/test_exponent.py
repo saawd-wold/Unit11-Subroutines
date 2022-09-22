@@ -34,9 +34,10 @@ def test_expobase1():
         assert exponentiate(1, a) == 1, f"1^{a} did not yield {1}!"
 
 def test_expo_arbitrarynumbers():
+    np.random.seed(1337)
     A = np.random.gamma(1.618, 28.024, 50) + 1e-4
     B = np.random.normal(0, 15, 50)
-    pows = np.float_power(A, B)
+    pows = np.power(A, B)
     for a, b, p in zip(A, B, pows):
         assert exponentiate(a, b) == pytest.approx(p, 1e-5)
 
